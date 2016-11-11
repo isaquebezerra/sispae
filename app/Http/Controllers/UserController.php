@@ -7,6 +7,7 @@ use App\User;
 use App\Role;
 use DB;
 use Hash;
+use App\Campus;
 
 class UserController extends Controller {
 
@@ -21,8 +22,9 @@ class UserController extends Controller {
 	// Show the form for creating a new user.
 	public function create() {
 
-		$roles = Role::pluck('display_name','id');
-		return view('users.create',compact('roles'));
+		$campuses = Campus::pluck('name','id');
+        $roles = Role::pluck('display_name','id');
+		return view('users.create',compact('roles','campuses'));
 	}
 
 
@@ -34,19 +36,30 @@ class UserController extends Controller {
         	'name' => 'required',
         	'email' => 'required|email|unique:users,email',
         	'password' => 'required|same:confirm-password',
-        	'roles' => 'required'
+        	'roles' => 'required',
+            'campus_id' => 'required'
         ]);
 
+
 		$input = $request->all();
+        
 		$input['password'] = Hash::make($input['password']);
+
 		$user = User::create($input);
 
         foreach ($request->input('roles') as $key => $value) {
         	$user->attachRole($value);
         }
 
+        $campus_id = $request->input('campus_id');
+
+        $user->campus_id = $campus_id;
+
+        $user->save();
+
+
         return redirect()->route('users.index')
-       	->with('success','User created successfully');
+       	->with('success','Usuário criado com sucesso');
     }
 
     //Display the specified user.
@@ -59,10 +72,13 @@ class UserController extends Controller {
     //Show the form for editing the specified user.
     public function edit($id) {
 
+
     	$user = User::find($id);
         $roles = Role::pluck('display_name','id');
+        $campuses = Campus::pluck('name','id');
         $userRole = $user->roles->pluck('id','id')->toArray();
-        return view('users.edit',compact('user','roles','userRole'));
+        $userCampus = $user->campus->id;
+        return view('users.edit',compact('user','roles','userRole','campuses','userCampus'));
     }
 
 	//Update the specified user in storage.
@@ -93,7 +109,7 @@ class UserController extends Controller {
 
         return redirect()
         	->route('users.index')
-            ->with('success','User updated successfully');
+            ->with('success','Usuário alterado com sucesso!');
     }
 
     //Remove the specified user from storage.

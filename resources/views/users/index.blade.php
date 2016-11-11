@@ -24,6 +24,7 @@
 		<th>Nome</th>
 		<th>Email</th>
 		<th>Papéis</th>
+		<th>Campus</th>
 		<th width="280px">Ação</th>
 	</tr>
 	@foreach ($data as $key => $user)
@@ -38,6 +39,8 @@
 					@endforeach
 				@endif
 			</td>
+
+			<td>{{ $user->campus->name }}</td>
 
 			<td>
 				<a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Visualizar</a>

@@ -45,10 +45,10 @@
                     <ul class="nav navbar-nav">
                         <li><a href="{{ route('users.index') }}">Usuários</a></li>
                         <li><a href="{{ route('roles.index') }}">Papéis</a></li>
-                        <li><a href="{{ route('roles.index') }}">Processos</a></li>
-                        <li><a href="{{ route('roles.index') }}">Inscrições</a></li>
-                        <li><a href="{{ route('roles.index') }}">Relatórios</a></li>
-                        <li><a href="{{ route('roles.index') }}">Campi</a></li>
+                        <li><a href="{{ route('campuses.index') }}">Campi</a></li>
+                        <li><a href="{{ route('campuses.index') }}">Inscrições</a></li>
+                        <li><a href="{{ route('campuses.index') }}">Relatórios</a></li>
+                        <li><a href="{{ route('campuses.index') }}">Processos</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -56,7 +56,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+                            <li><a href="{{ url('/register') }}">Cadastrar-se</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

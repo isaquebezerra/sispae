@@ -8,9 +8,9 @@
 	        </div>
 
 	        <div class="pull-right">
-	        	@permission('campus-create')
-	            	<a class="btn btn-success" href="{{ route('campus.create') }}">Criar Novo Campus</a>
-	            @endpermission
+	        	
+	            	<a class="btn btn-success" href="{{ route('campuses.create') }}">Criar Novo Campus</a>
+	            
 	        </div>
 	    </div>
 	</div>
@@ -24,29 +24,27 @@
 	<table class="table table-bordered">
 		<tr>
 			<th>No</th>
-			<th>Title</th>
-			<th>Description</th>
+			<th>Campus</th>
 			<th width="280px">Action</th>
 		</tr>
-		@foreach ($campuss as $key => $campus)
+		@foreach ($campuses as $key => $campus)
 		<tr>
 			<td>{{ ++$i }}</td>
-			<td>{{ $campus->title }}</td>
-			<td>{{ $campus->description }}</td>
+			<td>{{ $campus->name }}</td>
 			<td>
-				<a class="btn btn-info" href="{{ route('campus.show',$campus->id) }}">Show</a>
-				@permission('campus-edit')
-				<a class="btn btn-primary" href="{{ route('campus.edit',$campus->id) }}">Edit</a>
-				@endpermission
-				@permission('campus-delete')
-				{!! Form::open(['method' => 'DELETE','route' => ['campus.destroy', $campus->id],'style'=>'display:inline']) !!}
-	            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+				<a class="btn btn-info" href="{{ route('campuses.show', $campus->id) }}">Visualizar</a>
+				
+				<a class="btn btn-primary" href="{{ route('campuses.edit', $campus->id) }}">Editar</a>
+				
+				
+				{!! Form::open(['method' => 'DELETE','route' => ['campuses.destroy', $campus->id],'style'=>'display:inline']) !!}
+	            {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
 	        	{!! Form::close() !!}
-	        	@endpermission
+	        	
 			</td>
 		</tr>
 		@endforeach
 	</table>
+	{!! $campuses->render() !!}
 </div>
-{!! $campuss->render() !!}
 @endsection
