@@ -2,6 +2,10 @@
 
 return [
 
+    'fileDestinationPath' => 'uploads',
+    'allowedFileTypes' => 'jpg,jpeg,bmp,png,pdf',
+    'maxFileSize' => 2000,
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

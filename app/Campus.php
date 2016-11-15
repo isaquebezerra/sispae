@@ -11,4 +11,8 @@ class Campus extends Model {
 	public function users() {
 		return $this->hasMany('App\User');
 	}
+
+	public function processes() {
+		return $this->hasMany('App\Process');
+	}
 }

@@ -42,3 +42,19 @@ Route::group(['prefix'=>'campuses', 'where'=>['id'=>'[0-9]+']], function() {
 	Route::patch('{id}',['as'=>'campuses.update', 'uses'=>'CampusController@update']);
 	Route::delete('{id}',['as'=>'campuses.destroy', 'uses'=>'CampusController@destroy']);
 });
+
+Route::group(['prefix'=>'processes', 'where'=>['id'=>'[0-9]+']], function() {
+	Route::get('', ['as'=>'processes.index', 'uses'=>'ProcessController@index']);
+	Route::get('create',['as'=>'processes.create', 'uses'=>'ProcessController@create']);
+	Route::post('create',['as'=>'processes.store', 'uses'=>'ProcessController@store']);
+	Route::get('{id}', ['as'=>'processes.show', 'uses'=>'ProcessController@show']);
+	Route::get('{id}/edit',['as'=>'processes.edit','uses'=>'ProcessController@edit']);
+	Route::patch('{id}',['as'=>'processes.update', 'uses'=>'ProcessController@update']);
+	Route::delete('{id}',['as'=>'processes.destroy', 'uses'=>'ProcessController@destroy']);
+});
+
+Route::group(['middleware' => ['web']], function () {
+    Route::get('upload', 'FilesController@upload');
+    Route::post('/handleUpload', 'FilesController@handleUpload');
+    Route::get('/deleteFile/{id}', ['as' => 'deleteFile', 'uses' => 'FilesController@deleteFile']);
+});

@@ -35,8 +35,7 @@
 				<a class="btn btn-info" href="{{ route('campuses.show', $campus->id) }}">Visualizar</a>
 				
 				<a class="btn btn-primary" href="{{ route('campuses.edit', $campus->id) }}">Editar</a>
-				
-				
+								
 				{!! Form::open(['method' => 'DELETE','route' => ['campuses.destroy', $campus->id],'style'=>'display:inline']) !!}
 	            {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
 	        	{!! Form::close() !!}

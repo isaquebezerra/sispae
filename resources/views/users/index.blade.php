@@ -39,9 +39,7 @@
 					@endforeach
 				@endif
 			</td>
-
 			<td>{{ $user->campus->name }}</td>
-
 			<td>
 				<a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Visualizar</a>
 				<a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Editar</a>

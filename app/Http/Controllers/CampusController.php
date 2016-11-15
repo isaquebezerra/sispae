@@ -25,14 +25,13 @@ class CampusController extends Controller {
     public function store(Request $request) {
 
     	$this->validate($request, [
-			'title' => 'required',
-            'description' => 'required'
+			'name' => 'required',
         ]);
 
         Campus::create($request->all());
         return redirect()
-        	->route('campus.index')
-            ->with('success','Campus created successfully');
+        	->route('campuses.index')
+            ->with('success','Campus criado com sucesso!');
     }
 
 
@@ -54,20 +53,19 @@ class CampusController extends Controller {
     public function update(Request $request, $id) {
     	
     	$this->validate($request, [
-			'title' => 'required',
-			'description' => 'required',
+			'name' => 'required',
         ]);
 
         Campus::find($id)->update($request->all());
         return redirect()
-        	->route('campus.index')
-			->with('success','Campus updated successfully');
+        	->route('campuses.index')
+			->with('success','Campus atualizado com sucesso!');
     }
 
     //Remove the specified resource from storage.
     public function destroy($id) {
     	Campus::find($id)->delete();
-        return redirect()->route('campus.index')
-	        ->with('success','Campus deleted successfully');
+        return redirect()->route('campuses.index')
+	        ->with('success','Campus excluído com sucesso!');
     }
 }

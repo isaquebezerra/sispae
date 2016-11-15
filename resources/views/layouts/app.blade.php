@@ -46,9 +46,9 @@
                         <li><a href="{{ route('users.index') }}">Usuários</a></li>
                         <li><a href="{{ route('roles.index') }}">Papéis</a></li>
                         <li><a href="{{ route('campuses.index') }}">Campi</a></li>
-                        <li><a href="{{ route('campuses.index') }}">Inscrições</a></li>
+                        <li><a href="{{ route('processes.index') }}">Processos</a></li>
                         <li><a href="{{ route('campuses.index') }}">Relatórios</a></li>
-                        <li><a href="{{ route('campuses.index') }}">Processos</a></li>
+                        <li><a href="{{ route('campuses.index') }}">Inscrições</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

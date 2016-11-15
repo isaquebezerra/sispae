@@ -11,10 +11,9 @@ class AddCampusToUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::table('users', function ($table) {
-            $table->integer('campus_id')->unsigned()->nullable();
+            $table->integer('campus_id')->unsigned();
             $table->foreign('campus_id')->references('id')->on('campuses');
         });
     }
@@ -24,8 +23,7 @@ class AddCampusToUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::table('users', function ($table) {
             $table->dropColumn('campus_id');
         });
