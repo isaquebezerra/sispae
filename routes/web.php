@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
@@ -22,6 +20,8 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('users','UserController');
+
+
 
 Route::group(['prefix'=>'roles', 'where'=>['id'=>'[0-9]+']], function() {
 	Route::get('', ['as'=>'roles.index', 'uses'=>'RoleController@index']);
@@ -57,4 +57,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('upload', 'FilesController@upload');
     Route::post('/handleUpload', 'FilesController@handleUpload');
     Route::get('/deleteFile/{id}', ['as' => 'deleteFile', 'uses' => 'FilesController@deleteFile']);
+});
+
+Route::group(['prefix'=>'/'], function() {
+	Route::get('', 'MainController@mainindex');
+	Route::get('{link_name}', 'MainController@index');
 });

@@ -15,7 +15,6 @@ class CreatePersonalDatasTable extends Migration
     {
         Schema::create('personal_datas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('full_name');
             $table->string('cpf');
             $table->string('course');
             $table->string('register');

@@ -33,10 +33,19 @@
 		</tr>
 		@foreach ($data as $key => $process)
 		<tr>
+			<?php 
+			$start_date = $process->start_date;
+			$start_date_format = DateTime::createFromFormat('Y-m-d', $start_date);
+			$start_date_format = $start_date_format->format('d/m/Y');
+
+			$final_date = $process->final_date;
+			$final_date_format = DateTime::createFromFormat('Y-m-d', $final_date);
+			$final_date_format = $final_date_format->format('d/m/Y');
+			?>
 			<td>{{ ++$i }}</td>
 			<td>{{ $process->name }}</td>
-			<td>{{ $process->start_date }}</td>
-			<td>{{ $process->final_date }}</td>
+			<td>{{ $start_date_format }}</td>
+			<td>{{ $final_date_format }}</td>
 			<td>{{ $process->campus->name }}</td>
 			<td>{{ $process->status }}</td>
 			<td>

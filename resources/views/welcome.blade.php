@@ -69,21 +69,20 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
+                    <a href="{{ url('/register') }}">Cadastrar-se</a>
                 </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
+                
+                <div>
+                    <h1>Bem vindo(a) ao SISPAE.</h1>
+                    <h3>Selecione um campus abaixo para continuar:</h3>
+                </div>  
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    @foreach($campuses as $campus)
+                        <a href="{{ $campus->link_name }}">{{ $campus->name }}</a>
+                    @endforeach
                 </div>
             </div>
         </div>

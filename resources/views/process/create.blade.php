@@ -34,14 +34,14 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Data Inicial:</strong>
-                {!! Form::date('start_date', \Carbon\Carbon::now(), array('placeholder' => 'Data Inicial','class' => 'form-control')) !!}
+                {!! Form::date('start_date', '', array('placeholder' => 'dd/mm/aaaa','class' => 'form-control')) !!}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Data Final:</strong>
-                {!! Form::date('final_date', \Carbon\Carbon::now(), array('placeholder' => 'Data Final','class' => 'form-control')) !!}
+                {!! Form::date('final_date', '', array('placeholder' => 'dd/mm/aaa','class' => 'form-control')) !!}
             </div>
         </div>
 

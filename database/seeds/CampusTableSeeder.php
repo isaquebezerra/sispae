@@ -12,31 +12,38 @@ class CampusTableSeeder extends Seeder
     public function run() {
 
         DB::table('campuses')->insert([
-            'name' => 'Petrolina'
+            'name' => 'Floresta',
+            'link_name' => 'floresta'
         ]);
 
         DB::table('campuses')->insert([
-            'name' => 'Petrolina Zona Rural'
+            'name' => 'Ouricuri',
+            'link_name' => 'ouricuri'
         ]);
 
         DB::table('campuses')->insert([
-            'name' => 'Santa Maria'
+            'name' => 'Petrolina',
+            'link_name' => 'petrolina'
         ]);
 
         DB::table('campuses')->insert([
-            'name' => 'Salgueiro'
+            'name' => 'Petrolina Zona Rural',
+            'link_name' => 'petrolina-zona-rural'
         ]);
 
         DB::table('campuses')->insert([
-            'name' => 'Ouricuri'
+            'name' => 'Santa Maria',
+            'link_name' => 'santa-maria'
         ]);
 
         DB::table('campuses')->insert([
-            'name' => 'Floresta'
-        ]);
+            'name' => 'Salgueiro',
+            'link_name' => 'salgueiro'
+        ]); 
 
         DB::table('campuses')->insert([
-            'name' => 'Serra Talhada'
+            'name' => 'Serra Talhada',
+            'link_name' => 'serra-talhada'
         ]);
     }
 }

@@ -28,7 +28,11 @@ class CampusController extends Controller {
 			'name' => 'required',
         ]);
 
-        Campus::create($request->all());
+        $campus = Campus::create($request->all());
+        $linkname = str_replace(' ', '-', $campus->name);
+        $linkname = strtolower($linkname);
+        $campus->link_name = $linkname;
+        $campus->save();
         return redirect()
         	->route('campuses.index')
             ->with('success','Campus criado com sucesso!');

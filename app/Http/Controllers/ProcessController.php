@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Campus;
 use App\Process;
 use App\File;
+use DateTime;
 
 class ProcessController extends Controller {
 
@@ -34,10 +35,18 @@ class ProcessController extends Controller {
         	'status' => 'required',
         ]);
 
-		$input = $request->all();        
+		$input = $request->all();
+
+        $initialDate = $input['start_date'];
+        $finalDate = $input['final_date'];
+
+        $input['start_date'] = DateTime::createFromFormat('d/m/Y', $initialDate);
+        $input['final_date'] = DateTime::createFromFormat('d/m/Y', $finalDate);      
 		$process = Process::create($input);
+        
         $campus_id = $request->input('campus_id');
         $process->campus_id = $campus_id;
+
         $process->save();
 		
 		return redirect()->route('processes.index')
@@ -50,5 +59,11 @@ class ProcessController extends Controller {
         $process = Process::find($id);
         $files = $process->files;
         return view('process.show',compact('process','files'));
+    }
+
+    public function destroy($id) {
+        Process::find($id)->delete();
+        return redirect()->route('processes.index')
+            ->with('success','Processo excluído com sucesso!');
     }
 }

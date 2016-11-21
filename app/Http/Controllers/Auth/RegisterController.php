@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Role;
+use App\PersonalData;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -68,14 +69,33 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'password' => bcrypt($data['password']),
             'campus_id' => $data['campus_id'],
         ];
 
         $role = Role::find(3);
         $user = User::create($input);
         $user->attachRole($role);
+        $userId = $user->id;
 
+        $input =[
+            'cpf' => $data['cpf'],
+            'course' => $data['course'],
+            'register' => $data['register'],
+            'shift' => $data['shift'],
+            'genre' => $data['genre'],
+            'birthday' => $data['birthday'],
+            'rg' => $data['rg'],
+            'issuing_body' => $data['issuing_body'],
+            'mother' => $data['mother'],
+            'father' => $data['father'],
+            'course_modality' => $data['course_modality'],
+            'class' => $data['class'],
+            'phone' => $data['phone'],
+        ];
+
+        $personaldata = PersonalData::create($input);
+        $personaldata->user_id = $userId;
+        $personaldata->save();
         return $user;
     }
 }

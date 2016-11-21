@@ -33,4 +33,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Campus');
     }
 
+    public function personalData() {
+        return $this->hasOne('App\PersonalData');
+    }
+
 }
