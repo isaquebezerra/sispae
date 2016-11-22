@@ -43,9 +43,11 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ route('users.index') }}">Dados Pessoais</a></li>
-                        <li><a href="{{ route('roles.index') }}">Inscrições</a></li>
-                        <li><a href="{{ route('campuses.index') }}">Questionário</a></li>
+                        @if(Auth::check())
+                            <li><a href="{{ route('users.index') }}">Dados Pessoais</a></li>
+                            <li><a href="{{ route('roles.index') }}">Inscrições</a></li>
+                            <li><a href="{{ route('campuses.index') }}">Questionário</a></li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

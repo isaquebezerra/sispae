@@ -43,12 +43,14 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ route('users.index') }}">Usuários</a></li>
-                        <li><a href="{{ route('roles.index') }}">Papéis</a></li>
-                        <li><a href="{{ route('campuses.index') }}">Campi</a></li>
-                        <li><a href="{{ route('processes.index') }}">Processos</a></li>
-                        <li><a href="{{ route('campuses.index') }}">Relatórios</a></li>
-                        <li><a href="{{ route('campuses.index') }}">Inscrições</a></li>
+                        @if(Auth::check())
+                            <li><a href="{{ route('users.index') }}">Usuários</a></li>
+                            <li><a href="{{ route('roles.index') }}">Papéis</a></li>
+                            <li><a href="{{ route('campuses.index') }}">Campi</a></li>
+                            <li><a href="{{ route('processes.index') }}">Processos</a></li>
+                            <li><a href="{{ route('campuses.index') }}">Relatórios</a></li>
+                            <li><a href="{{ route('campuses.index') }}">Inscrições</a></li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
