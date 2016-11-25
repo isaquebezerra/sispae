@@ -12,12 +12,22 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/js/app.js">
 
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#newMember").click(function(){      
+                var seuNode = document.getElementById('member');
+                var clone   = seuNode.cloneNode(true);
+                document.body.appendChild(clone);
+            });
+        });
     </script>
 </head>
 <body>

@@ -55,3 +55,8 @@ Route::group(['prefix'=>'/'], function() {
 	Route::get('', 'MainController@mainindex');
 	Route::get('{link_name}', ['as'=>'student.index', 'uses' => 'MainController@index']);
 });
+
+Route::group(['prefix'=>'/student'], function() {
+	Route::get('enroll', ['as' => 'student.enroll', 'uses' => 'QuestionnaireController@index']);
+	Route::get('questionnaire', ['as' => 'student.questionnaire', 'uses' => 'QuestionnaireController@questionnaire']);
+});
