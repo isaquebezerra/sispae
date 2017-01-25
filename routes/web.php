@@ -59,4 +59,5 @@ Route::group(['prefix'=>'/'], function() {
 Route::group(['prefix'=>'/student'], function() {
 	Route::get('enroll', ['as' => 'student.enroll', 'uses' => 'QuestionnaireController@index']);
 	Route::get('questionnaire', ['as' => 'student.questionnaire', 'uses' => 'QuestionnaireController@questionnaire']);
+	Route::post('questionnairesend', ['as' => 'student.questionnairesend', 'uses' => 'QuestionnaireController@questionnairesend']);
 });

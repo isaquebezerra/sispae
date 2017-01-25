@@ -78,19 +78,9 @@ class RegisterController extends Controller
         $userId = $user->id;
 
         $input =[
-            'cpf' => $data['cpf'],
             'course' => $data['course'],
             'register' => $data['register'],
-            'shift' => $data['shift'],
-            'genre' => $data['genre'],
-            'birthday' => $data['birthday'],
-            'rg' => $data['rg'],
-            'issuing_body' => $data['issuing_body'],
-            'mother' => $data['mother'],
-            'father' => $data['father'],
-            'course_modality' => $data['course_modality'],
             'class' => $data['class'],
-            'phone' => $data['phone'],
         ];
 
         $personaldata = PersonalData::create($input);

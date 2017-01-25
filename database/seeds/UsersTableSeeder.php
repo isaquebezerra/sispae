@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Isaque Bezerra',
             'email' => 'isaquebez@gmail.com',
             'password' => bcrypt('secret'),
+            'campus_id' => 1,
             
         ]);
 
@@ -22,6 +23,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Yuri Henrique',
             'email' => 'yury@gmail.com',
             'password' => bcrypt('secret'),
+            'campus_id' => 2,
             
         ]);
 
@@ -29,7 +31,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'João Luiz',
             'email' => 'joaoluiz@gmail.com',
             'password' => bcrypt('secret'),
-            
+            'campus_id' => 3,
         ]);
 
     }
