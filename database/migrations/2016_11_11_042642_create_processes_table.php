@@ -19,7 +19,7 @@ class CreateProcessesTable extends Migration
             $table->date('start_date');
             $table->date('final_date');
             $table->integer('campus_id')->unsigned();
-            $table->enum('status', ['Aberto', 'Encerrado']);
+            $table->enum('status', ['Aberto', 'Encerrado'])->nullable();
             $table->foreign('campus_id')->references('id')->on('campuses');
             $table->timestamps();
         });

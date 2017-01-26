@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use App\Campus;
+use App\Enroll;
 
 class User extends Authenticatable
 {
@@ -35,6 +36,10 @@ class User extends Authenticatable
 
     public function personalData() {
         return $this->hasOne('App\PersonalData');
+    }
+
+    public function enrolls() {
+        return $this->hasMany('App\Enroll');
     }
 
 }

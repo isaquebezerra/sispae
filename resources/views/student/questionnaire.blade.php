@@ -820,11 +820,11 @@
                             <div class="col-sm-12">
                                 <div class="col-sm-3">
                                     {!! Form::label('nome_membro', 'Nome:') !!}
-                                    {!! Form::text('nome_membro', null, array('placeholder' => 'Nome', 'class' => 'form-control')) !!}
+                                    {!! Form::text('nome_membro[]', null, array('placeholder' => 'Nome', 'class' => 'form-control')) !!}
                                 </div>
                                 <div class="col-sm-3">
                                     {!! Form::label('idade_membro', 'Idade:') !!}
-                                    {!! Form::text('idade_membro', null, array('placeholder' => 'Idade', 'class' => 'form-control')) !!}
+                                    {!! Form::text('idade_membro[]', null, array('placeholder' => 'Idade', 'class' => 'form-control')) !!}
                                 </div>
                                 <div class="col-sm-3">
                                     {!! Form::label('parentesco_membro[]', 'Parentesco:') !!}

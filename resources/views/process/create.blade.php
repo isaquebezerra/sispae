@@ -1,3 +1,6 @@
+<?php
+use App\Modality;
+?>
 @extends('layouts.app')
 @section('content')
 <div class="container">
@@ -54,8 +57,13 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12">
 	        <div class="form-group">
-		        <strong>Status:</strong>
-		        {!! Form::select('status', ['Aberto' => 'Aberto', 'Encerrado' => 'Encerrado'], [], array('class' => 'form-control')) !!}
+		        <strong>Modalidades:</strong>
+		        <div class="checkbox">
+		        	<?php $modalities = Modality::all(); ?>
+		        	@foreach($modalities as $modality)
+		        		<label class="checkbox-inline"><input type="checkbox" name="modalidade[]" value="{{ $modality->name }}">{{ $modality->name }}</label>
+		        	@endforeach
+		        </div>
 	        </div>
         </div>
 

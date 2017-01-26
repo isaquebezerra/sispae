@@ -7,7 +7,7 @@ use App\Campus;
 
 class Process extends Model {
 
-		public $fillable = ['name', 'start_date', 'final_date', 'campus_id', 'status'];
+	public $fillable = ['name', 'start_date', 'final_date', 'campus_id', 'status'];
 
 	public function campus() {
         return $this->belongsTo('App\Campus');
@@ -15,5 +15,9 @@ class Process extends Model {
 
     public function files() {
         return $this->hasMany('App\File');
+    }
+
+    public function modalities() {
+    	return $this->hasMany('App\Modality');
     }
 }

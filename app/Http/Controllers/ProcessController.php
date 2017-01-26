@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Campus;
 use App\Process;
 use App\File;
+use App\Modality;
 use DateTime;
 
 class ProcessController extends Controller {
@@ -32,7 +33,7 @@ class ProcessController extends Controller {
         	'start_date' => 'required',
         	'final_date' => 'required',
         	'campus_id' => 'required',
-        	'status' => 'required',
+            'modalidade' => 'required',
         ]);
 
 		$input = $request->all();
@@ -41,8 +42,9 @@ class ProcessController extends Controller {
         $finalDate = $input['final_date'];
 
         $input['start_date'] = DateTime::createFromFormat('d/m/Y', $initialDate);
-        $input['final_date'] = DateTime::createFromFormat('d/m/Y', $finalDate);      
-		$process = Process::create($input);
+        $input['final_date'] = DateTime::createFromFormat('d/m/Y', $finalDate);
+
+        $process = Process::create($input);
         
         $campus_id = $request->input('campus_id');
         $process->campus_id = $campus_id;
