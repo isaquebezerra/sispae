@@ -19,9 +19,10 @@
 
             <div class="panel-body">
             	<div class="center">
-					<a class="btn btn-success" href="{{ route('student.questionnaire') }}">Preencher questionário</a>
-					<a class="btn btn-primary" href="{{ route('student.enroll') }}">Enviar documentação</a>
+					<a class="btn btn-success" href="{{ route('student.questionnaire', $process->id) }}">Preencher questionário</a>
+					<a class="btn btn-primary" href="">Enviar documentação</a>
 				</div>
+
             </div>
         </div>
     </div>

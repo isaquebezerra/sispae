@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Campus;
 
 class Process extends Model {
 
@@ -18,6 +17,6 @@ class Process extends Model {
     }
 
     public function modalities() {
-    	return $this->hasMany('App\Modality');
+        return $this->belongsToMany('App\Modality');
     }
 }

@@ -38,8 +38,8 @@
 			<td>{{ $process->status }}</td>
 			<td>
 				@if($process->status == 'Aberto')
-				<a class="btn btn-success" href="{{ route('student.enroll', $process->id) }}">Inscrever-se</a>
-				<a class="btn btn-primary" href="{{ route('student.enroll', $process->id) }}">Mais Informações</a>
+				<a class="btn-sm btn-success" href="{{ route('student.enroll', $process->id) }}">Inscrever-se</a>
+				<a class="btn-sm btn-primary" href="{{ route('student.enroll', $process->id) }}">Mais Informações</a>
 				@endif
 			</td>
 		</tr>

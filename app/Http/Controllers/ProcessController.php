@@ -33,7 +33,7 @@ class ProcessController extends Controller {
         	'start_date' => 'required',
         	'final_date' => 'required',
         	'campus_id' => 'required',
-            'modalidade' => 'required',
+            'modalidades' => 'required',
         ]);
 
 		$input = $request->all();
@@ -48,6 +48,12 @@ class ProcessController extends Controller {
         
         $campus_id = $request->input('campus_id');
         $process->campus_id = $campus_id;
+
+        $modalities = $input['modalidades'];
+
+        foreach ($modalities as $modality) {
+            $process->modalities()->attach($modality);
+        }
 
         $process->save();
 		

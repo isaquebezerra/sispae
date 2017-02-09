@@ -7,15 +7,18 @@ use Illuminate\Http\Request;
 use App\Questionnaire;
 use App\FamilyMember;
 use DateTime;
+use App\Process;
 
 class QuestionnaireController extends Controller {
 
-	public function index() {
-		return view('student.enroll');
+	public function enroll($id) {
+		$process = Process::find($id);
+		return view('student.enroll',['process' => $process]);
 	}
 
-	public function questionnaire() {
-		return view('student.questionnaire');
+	public function questionnaire($id) {
+		$process = Process::find($id);
+		return view('student.questionnaire',['process' => $process]);
 	}
 
 	public function questionnairesend(Request $request) {

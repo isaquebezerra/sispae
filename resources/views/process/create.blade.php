@@ -61,7 +61,7 @@ use App\Modality;
 		        <div class="checkbox">
 		        	<?php $modalities = Modality::all(); ?>
 		        	@foreach($modalities as $modality)
-		        		<label class="checkbox-inline"><input type="checkbox" name="modalidade[]" value="{{ $modality->name }}">{{ $modality->name }}</label>
+		        		<label class="checkbox-inline"><input type="checkbox" name="modalidades[]" value="{{ $modality->id }}">{{ $modality->name }}</label>
 		        	@endforeach
 		        </div>
 	        </div>
