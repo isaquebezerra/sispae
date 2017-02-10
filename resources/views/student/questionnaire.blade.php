@@ -178,7 +178,7 @@
                     <div class="form-group row">
                         <div class="col-sm-6">
                             {!! Form::label('data_nascimento', 'Data de nascimento:') !!}
-                            {!! Form::date('data_nascimento', null, array('placeholder'=>'dd/mm/yyyy', 'class' => 'form-control')) !!}
+                            {!! Form::text('data_nascimento', null, array('class' => 'form-control')) !!}
                         </div>
                         <div class="col-sm-6">
                             {!! Form::label('sexo', 'Sexo:') !!}
@@ -323,6 +323,67 @@
                             <div class="radio">
                                 <label><input type="radio" name="temfilhos" value="Não">Não</label>
                                 <label><input type="radio" name="temfilhos" value="Sim">Sim</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            {!! Form::label('trabalha', 'Você trabalha?') !!}
+                            <div class="radio">
+                                <label class="radio-inline"><input type="radio" name="trabalha" value="Não">Não</label>
+                                <label class="radio-inline"><input type="radio" name="trabalha" value="Sim, com carteira assinada">Sim, com carteira assinada</label>
+                                <label class="radio-inline"><input type="radio" name="trabalha" value="Sim, sem carteira assinada">Sim, sem carteira assinada</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            {!! Form::label('em_que_trabalha', 'Em que você faz trabalha?') !!}
+                            {!! Form::text('em_que_trabalha', null, array('class' => 'form-control')) !!}
+                        </div>
+                        <div class="col-sm-6">
+                            {!! Form::label('valor_salario', 'Valor do salário') !!}
+                            {!! Form::text('valor_salario', null, array('class' => 'form-control')) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            {!! Form::label('responsavel', 'Quem é responsável por SUAS despesas?') !!}
+                            <div class="radio">
+                                <div class="col-sm-6">
+                                    <label><input type="radio" name="responsavel" value="Você é responsável pelo próprio sustento">Você é responsável pelo próprio sustento</label>
+                                    <label><input type="radio" name="responsavel" value="Seus pais são responsáveis pelo seu sustento">Seus pais são responsáveis pelo seu sustento</label>
+                                    <label><input type="radio" name="responsavel" value="Somente sua mãe é responsável por seu sustento">Somente sua mãe é responsável por seu sustento</label>
+                                    <label><input type="radio" name="responsavel" value="Somente seu pai é responsável por seu sustento">Somente seu pai é responsável por seu sustento</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label><input type="radio" name="responsavel" value="Você é responsável pelo próprio sustento">Por avô/avó.</label>
+                                    <label><input type="radio" name="responsavel" value="Seus pais são responsáveis pelo seu sustento">Esposo (a)</label>
+                                    <label><input type="radio" name="responsavel" value="Somente sua mãe é responsável por seu sustento">Outros parentes.</label>
+                                    <label><input type="radio" name="responsavel" value="Outros meios">Outros meios</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            {!! Form::label('resp_renda', 'Quem é responsável pela renda e responsabilidades financeiras de sua FAMÍLIA?') !!}
+                            <div class="checkbox">
+                                <div class="col-sm-12">
+                                    <label class="checkbox-inline"><input type="checkbox" name="resp_renda[]" value="Os Pais">Os Pais</label>
+                                    <label class="checkbox-inline"><input type="checkbox" name="resp_renda[]" value="Só a mãe">Só a mãe</label>
+                                    <label class="checkbox-inline"><input type="checkbox" name="resp_renda[]" value="Só o pai">Só o pai</label>
+                                    <label class="checkbox-inline"><input type="checkbox" name="resp_renda[]" value="Você">Você</label>
+                                    <label class="checkbox-inline"><input type="checkbox" name="resp_renda[]" value="Outros parentes">Outros parentes</label>
+                                    <label class="checkbox-inline"><input type="checkbox" name="resp_renda[]" value="Irmãos">Irmãos</label>
+                                    <label class="checkbox-inline"><input type="checkbox" name="resp_renda[]" value="Esposo(a)">Esposo(a)</label>
+                                    <label class="checkbox-inline"><input type="checkbox" name="resp_renda[]" value="Outros">Outros</label>
+                                </div>
+                              
                             </div>
                         </div>
                     </div>
@@ -535,51 +596,29 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            {!! Form::label('espec_soc', 'Especificidades sociais, étnicas ou culturais dos familiares:') !!}
+                            <div class="checkbox">
+                                <div class="col-sm-4">
+                                    <label class="checkbox"><input type="checkbox" name="espec_soc[]" value="Família Cigana">Família Cigana</label>
+                                    <label class="checkbox"><input type="checkbox" name="espec_soc[]" value="Família quilombola">Família quilombola</label>
+                                    <label class="checkbox"><input type="checkbox" name="espec_soc[]" value="Família ribeirinha">Família ribeirinha</label>
+                                    <label class="checkbox"><input type="checkbox" name="espec_soc[]" value="Mora em Assentamento">Mora em Assentamento</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <label class="checkbox"><input type="checkbox" name="espec_soc[]" value="Família ou pessoa em situação de rua (morando na rua)">Família ou pessoa em situação de rua (morando na rua)</label>
+                                    <label class="checkbox"><input type="checkbox" name="espec_soc[]" value="Família indígena residente na reserva/aldeia">Família indígena residente na reserva/aldeia</label>
+                                    <label class="checkbox"><input type="checkbox" name="espec_soc[]" value="Família indígena NÃO residente na reserva/aldeia">Família indígena NÃO residente na reserva/aldeia</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
                 <h1>Dados financeiros</h1>
                 <section>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            {!! Form::label('trabalha', 'Você trabalha?') !!}
-                            <div class="radio">
-                                <label class="radio-inline"><input type="radio" name="trabalha" value="Não">Não</label>
-                                <label class="radio-inline"><input type="radio" name="trabalha" value="Sim, com carteira assinada">Sim, com carteira assinada</label>
-                                <label class="radio-inline"><input type="radio" name="trabalha" value="Sim, sem carteira assinada">Sim, sem carteira assinada</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-sm-6">
-                            {!! Form::label('em_que_trabalha', 'Em que você faz trabalha?') !!}
-                            {!! Form::text('em_que_trabalha', null, array('class' => 'form-control')) !!}
-                        </div>
-                        <div class="col-sm-6">
-                            {!! Form::label('valor_salario', 'Valor do salário') !!}
-                            {!! Form::text('valor_salario', null, array('class' => 'form-control')) !!}
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            {!! Form::label('responsavel', 'Quem é responsável por SUAS despesas?') !!}
-                            <div class="radio">
-                                <div class="col-sm-6">
-                                    <label><input type="radio" name="responsavel" value="Você é responsável pelo próprio sustento">Você é responsável pelo próprio sustento</label>
-                                    <label><input type="radio" name="responsavel" value="Seus pais são responsáveis pelo seu sustento">Seus pais são responsáveis pelo seu sustento</label>
-                                    <label><input type="radio" name="responsavel" value="Somente sua mãe é responsável por seu sustento">Somente sua mãe é responsável por seu sustento</label>
-                                    <label><input type="radio" name="responsavel" value="Somente seu pai é responsável por seu sustento">Somente seu pai é responsável por seu sustento</label>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label><input type="radio" name="responsavel" value="Você é responsável pelo próprio sustento">Por avô/avó.</label>
-                                    <label><input type="radio" name="responsavel" value="Seus pais são responsáveis pelo seu sustento">Esposo (a)</label>
-                                    <label><input type="radio" name="responsavel" value="Somente sua mãe é responsável por seu sustento">Outros parentes.</label>
-                                    <label><input type="radio" name="responsavel" value="Outros meios">Outros meios</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3">
@@ -828,6 +867,55 @@
                             null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            {!! Form::label('beneficiario', 'Você ou algum membro de sua família é (são) beneficiário/a (os/as) de Programas Sociais do Governo Federal?') !!}
+                            <div class="checkbox">
+                                <div class="col-sm-6">
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Benefício de Prestação Continuada (LOAS)">Benefício de Prestação Continuada (LOAS)</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Programa Bolsa Permanência (Bolsa MEC para Indígenas e Quilombolas)">Programa Bolsa Permanência (Bolsa MEC)</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Recebe remédio no Posto de Saúde ou farmácia)">Recebe remédio no Posto de Saúde ou farmácia)</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Caminhos as Escola (usa ônibus amarelo)">Caminhos as Escola (usa ônibus amarelo)</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Luz para todos (redução do preço da energia)">Luz para todos (redução do preço da energia)</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Minha Casa Minha Vida">Minha Casa Minha Vida</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Bolsa Família">Bolsa Família</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Reforma Agrária">Reforma Agrária</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Saúde não tem Preço">Saúde não tem Preço</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Jovem Aprendiz">Jovem Aprendiz</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Garantia Safra">Garantia Safra</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Assistência Estudantil">Assistência Estudantil</label>
+                                </div>
+                                
+                                <div class="col-sm-3">
+                                    
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="PROUNI">PROUNI</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="PRONATEC">PRONATEC</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Mais Médicos">Mais Médicos</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Cisternas para todos">Cisternas para todos</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Merenda escolar">Merenda escolar</label>
+                                    <label class="checkbox"><input type="checkbox" name="beneficiario[]" value="Outros">Outros</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                            {!! Form::label('estado_civil_pais', 'Estado Civil dos pais:') !!}
+                            {!! Form::select('estado_civil_pais',
+                            [
+                                'Solteiros(as)' => 'Solteiros(as)',
+                                'Casados(as)' => 'Casados(as)',
+                                'Divorciados(as)' => 'Divorciados(as)',
+                                'Desquitados ou separados(as) judicialmente' => 'Desquitados ou separados(as) judicialmente',
+                                'Vivem em união estável' => 'Vivem em união estável',
+                                'Viúvos(as)' => 'Viúvos(as)'
+                            ],
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                        </div>
+                    </div>
                 </section>
 
                 <h1>Composição familiar</h1>
@@ -935,37 +1023,37 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="checkbox" name="outros_rend[]" value="Mesada">Mesada</td>
+                                        <td><input type="checkbox" name="outros_rend[]" onclick="enableFields(this,'quem_rec_mes','valor_mes');" value="Mesada">Mesada</td>
                                         <td class="itb"><input type="text" name="quem_rec_mes" id="quem_rec_mes" disabled></td>
                                         <td class="itb"><input type="text" name="valor_mes" id="valor_mes" disabled></td>                                        
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox" name="outros_rend[]" value="Aluguel ou arrendamento">Aluguel ou arrendamento</td>
+                                        <td><input type="checkbox" name="outros_rend[]" onclick="enableFields(this,'quem_rec_alug','valor_alug');" value="Aluguel ou arrendamento">Aluguel ou arrendamento</td>
                                         <td class="itb"><input type="text" name="quem_rec_alug" id="quem_rec_alug" disabled></td>
                                         <td class="itb"><input type="text" name="valor_alug" id="valor_alug" disabled></td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox" name="outros_rend[]" value="Pensão alimentícia">Pensão alimentícia</td>
+                                        <td><input type="checkbox" name="outros_rend[]" onclick="enableFields(this,'quem_rec_pensao','valor_pensao');" value="Pensão alimentícia">Pensão alimentícia</td>
                                         <td class="itb"><input type="text" name="quem_rec_pensao" id="quem_rec_pensao" disabled></td>
                                         <td class="itb"><input type="text" name="valor_pensao" id="valor_pensao" disabled></td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox" name="outros_rend[]" value="Ajuda de parentes ou amigos">Ajuda de parentes ou amigos</td>
+                                        <td><input type="checkbox" name="outros_rend[]" onclick="enableFields(this,'quem_rec_ajuda','valor_ajuda');" value="Ajuda de parentes ou amigos">Ajuda de parentes ou amigos</td>
                                         <td class="itb"><input type="text" name="quem_rec_ajuda" id="quem_rec_ajuda" disabled></td>
                                         <td class="itb"><input type="text" name="valor_ajuda" id="valor_ajuda" disabled></td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox" name="outros_rend[]" value="Vendas (avon, natura, roupas, etc.)">Vendas (avon, natura, roupas, etc.)</td>
+                                        <td><input type="checkbox" name="outros_rend[]" onclick="enableFields(this,'quem_rec_vendas','valor_vendas');" value="Vendas (avon, natura, roupas, etc.)">Vendas (avon, natura, roupas, etc.)</td>
                                         <td class="itb"><input type="text" name="quem_rec_vendas" id="quem_rec_vendas" disabled></td>
                                         <td class="itb"><input type="text" name="valor_vendas" id="valor_vendas" disabled></td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox" name="outros_rend[]" value="Trabalhos avulsos">Trabalhos avulsos</td>
+                                        <td><input type="checkbox" name="outros_rend[]" onclick="enableFields(this,'quem_rec_trabs','valor_trabs');" value="Trabalhos avulsos">Trabalhos avulsos</td>
                                         <td class="itb"><input type="text" name="quem_rec_trabs" id="quem_rec_trabs" disabled></td>
                                         <td class="itb"><input type="text" name="valor_trabs" id="valor_trabs" disabled></td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox" name="outros_rend[]" value="Outros:">Outros:</td>
+                                        <td><input type="checkbox" name="outros_rend[]" onclick="enableFields(this,'quem_rec_outros','valor_outros');" value="Outros:">Outros:</td>
                                         <td class="itb"><input type="text" name="quem_rec_outros" id="quem_rec_outros" disabled></td>
                                         <td class="itb"><input type="text" name="valor_outros" id="valor_outros" disabled></td>
                                     </tr>
@@ -974,7 +1062,41 @@
                             </table>
                         </div>
                     </div>
-                    
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            {!! Form::label('transporte', 'Qual o meio de transporte utilizado, prioritariamente, por você e sua família?') !!}
+                            <div class="radio">
+                                <label class="radio-inline"><input type="radio" name="transporte" value="Carro do aluno">Carro do aluno</label>
+                                <label class="radio-inline"><input type="radio" name="transporte" value="Bicicleta">Bicicleta</label>
+                                <label class="radio-inline"><input type="radio" name="transporte" value="Moto">Moto</label>
+                                <label class="radio-inline"><input type="radio" name="transporte" value="Carro da família">Carro da família</label>
+                                <label class="radio-inline"><input type="radio" name="transporte" value="Ônibus">Ônibus</label>
+                                <label class="radio-inline"><input type="radio" name="transporte" value="A pé">A pé</label>
+                                <label class="radio-inline"><input type="radio" name="transporte" value="Outros">Outros</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            {!! Form::label('dist_casa_campus', 'Qual a distância, em quilômetros, de sua residência até o Campus?') !!}
+                            {!! Form::text('dist_casa_campus', null, array('placeholder' => '', 'class' => 'form-control')) !!}
+                        </div>
+                        <div class="col-sm-4">
+                            {!! Form::label('gasto_mens', 'Qual o gasto mensal, para chegar de sua residência até o Campus?') !!}
+                            {!! Form::text('gasto_mens', null, array('placeholder' => '', 'class' => 'form-control')) !!}
+                        </div>
+                        <div class="col-sm-4">
+                            {!! Form::label('tempo_percurso', 'Quanto tempo você leva para fazer este percurso?') !!}
+                            {!! Form::text('tempo_percurso', null, array('placeholder' => '', 'class' => 'form-control')) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            {!! Form::label('info_add', 'Caso você queira falar algo que não foi perguntado no questionário escreva aqui/informações complementares/relate aspectos relevantes sobre sua atual situação socioeconômica que justifique sua inclusão nos programas da Política de Assistência Estudantil do IF Sertão-PE.') !!}
+                            {!! Form::textarea('info_add', null, array('placeholder' => '', 'rows' => 4, 'class' => 'form-control')) !!}
+                        </div>
+                    </div>                   
                 </section>
 
             {!! Form::close() !!}
@@ -992,76 +1114,96 @@
 </body>
 <!-- Scripts -->
 <script>
-    $(document).ready(function() {
-        var max_fields_members      = 10; //maximum input boxes allowed
-        var wrapper_members         = $(".input_fields_wrap"); //Fields wrapper_members
-        var add_button_members      = $(".add_field_button"); //Add button ID
-    
-        var x = 1; //initlal text box count
-        $(add_button_members).click(function(e){ //on add input button click
-            e.preventDefault();
-            if(x < max_fields_members){ //max input box allowed
-                x++; //text box increment
-                $(wrapper_members).append('<div class="row family-member"><div class="col-sm-12"><div class="col-sm-3 form-group"><label>Nome:</label><input type="text" name="nome_membro[]" placeholder="Primeiro nome" class="form-control"></div><div class="col-sm-3 form-group"><label>Idade:</label><input type="text" name="idade_membro[]" placeholder="Idade" class="form-control"></div><div class="col-sm-3 form-group"><label>Parentesco:</label><input type="text" name="parentesco_membro[]" placeholder="Parentesco" class="form-control"></div><div class="col-sm-3 form-group"><label>Profissão:</label><input type="text" name="profissao_membro[]" placeholder="Profissão" class="form-control"></div></div><div class="col-sm-12"><div class="col-sm-4 form-group"><label>Estado civil:</label><select name="estado_civil_membro[]" class="form-control" id="sel1"><option value="" disabled selected>Selecione...</option><option>Solteiro</option><option>Casado</option><option>União estável</option><option>Separado</option><option>Viúvo</option></select></div><div class="col-sm-4 form-group"><label>Escolaridade:</label><select name="escolaridade_membro" class="form-control" id="sel1"><option value="" disabled selected>Selecione...</option><option>Não escolarizado</option><option>Fundamental incompleto</option><option>Fundamental completo</option><option>Médio incompleto</option><option>Médio completo</option><option>Superior completo</option><option>Superior incompleto</option><option>Pós-Graduação</option></select></div><div class="col-sm-4 form-group"><label>Renda mensal:</label><input name="renda_mensal_membro" type="text" placeholder="Profissão" class="form-control"></div></div><a href="#" class="remove_field btn-sm btn-danger">Remove</a></div>'); //add input box
-            }
-        });
-    
-        $(wrapper_members).on("click",".remove_field", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
-        })
+$(document).ready(function() {
+    var max_fields_members      = 10; //maximum input boxes allowed
+    var wrapper_members         = $(".input_fields_wrap"); //Fields wrapper_members
+    var add_button_members      = $(".add_field_button"); //Add button ID
+
+    var x = 1; //initlal text box count
+    $(add_button_members).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields_members){ //max input box allowed
+            x++; //text box increment
+            $(wrapper_members).append('<div class="row family-member"><div class="col-sm-12"><div class="col-sm-3 form-group"><label>Nome:</label><input type="text" name="nome_membro[]" placeholder="Primeiro nome" class="form-control"></div><div class="col-sm-3 form-group"><label>Idade:</label><input type="text" name="idade_membro[]" placeholder="Idade" class="form-control"></div><div class="col-sm-3 form-group"><label>Parentesco:</label><input type="text" name="parentesco_membro[]" placeholder="Parentesco" class="form-control"></div><div class="col-sm-3 form-group"><label>Profissão:</label><input type="text" name="profissao_membro[]" placeholder="Profissão" class="form-control"></div></div><div class="col-sm-12"><div class="col-sm-4 form-group"><label>Estado civil:</label><select name="estado_civil_membro[]" class="form-control" id="sel1"><option value="" disabled selected>Selecione...</option><option>Solteiro</option><option>Casado</option><option>União estável</option><option>Separado</option><option>Viúvo</option></select></div><div class="col-sm-4 form-group"><label>Escolaridade:</label><select name="escolaridade_membro" class="form-control" id="sel1"><option value="" disabled selected>Selecione...</option><option>Não escolarizado</option><option>Fundamental incompleto</option><option>Fundamental completo</option><option>Médio incompleto</option><option>Médio completo</option><option>Superior completo</option><option>Superior incompleto</option><option>Pós-Graduação</option></select></div><div class="col-sm-4 form-group"><label>Renda mensal:</label><input name="renda_mensal_membro" type="text" placeholder="Profissão" class="form-control"></div></div><a href="#" class="remove_field btn-sm btn-danger">Remove</a></div>'); //add input box
+        }
     });
+
+    $(wrapper_members).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});
 </script>
 
 <script>
-    $(document).ready(function() {
-        var max_fields_bens      = 10; //maximum input boxes allowed
-        var wrapper_members_bens         = $(".input_fields_wrap_bens"); //Fields wrapper_members_bens
-        var add_button_bens      = $(".add_field_button_bens"); //Add button ID
-    
-        var x = 1; //initlal text box count
-        $(add_button_bens).click(function(e){ //on add input button click
-            e.preventDefault();
-            if(x < max_fields_bens){ //max input box allowed
-                x++; //text box increment
-                $(wrapper_members_bens).append('<div class="row family-bens"><div class="col-sm-12"><div class="col-sm-4 form-group"><label>Descrição:</label><input type="text" name="desc_bem[]" placeholder="Descrição" class="form-control"></div><div class="col-sm-4 form-group"><label>Município:</label><input type="text" name="mun_bem[]" placeholder="Município" class="form-control"></div><div class="col-sm-4 form-group"><label>Valor de mercado (R$):</label><input type="text" name="valor_bem[]" placeholder="Valor" class="form-control"></div></div><a href="#" class="remove_field_bens btn-sm btn-danger">Remove</a></div></div>'); //add input box
-            }
-        });
-    
-        $(wrapper_members_bens).on("click",".remove_field_bens", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
-        })
+$(document).ready(function() {
+    var max_fields_bens      = 10; //maximum input boxes allowed
+    var wrapper_members_bens         = $(".input_fields_wrap_bens"); //Fields wrapper_members_bens
+    var add_button_bens      = $(".add_field_button_bens"); //Add button ID
+
+    var x = 1; //initlal text box count
+    $(add_button_bens).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields_bens){ //max input box allowed
+            x++; //text box increment
+            $(wrapper_members_bens).append('<div class="row family-bens"><div class="col-sm-12"><div class="col-sm-4 form-group"><label>Descrição:</label><input type="text" name="desc_bem[]" placeholder="Descrição" class="form-control"></div><div class="col-sm-4 form-group"><label>Município:</label><input type="text" name="mun_bem[]" placeholder="Município" class="form-control"></div><div class="col-sm-4 form-group"><label>Valor de mercado (R$):</label><input type="text" name="valor_bem[]" placeholder="Valor" class="form-control"></div></div><a href="#" class="remove_field_bens btn-sm btn-danger">Remove</a></div></div>'); //add input box
+        }
     });
+
+    $(wrapper_members_bens).on("click",".remove_field_bens", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});
 </script>
 
 <script>
-    var form = $("#questionnaire");
-    form.validate({
-        errorPlacement: function errorPlacement(error, element) { element.before(error); },
-        rules: {
-            confirm: {
-                equalTo: "#password"
-            }
+var form = $("#questionnaire");
+form.validate({
+    errorPlacement: function errorPlacement(error, element) { element.before(error); },
+    rules: {
+        confirm: {
+            equalTo: "#password"
         }
-    });
-    form.steps({
-        headerTag: "h1",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        onStepChanging: function (event, currentIndex, newIndex)
-        {
-            form.validate().settings.ignore = ":disabled,:hidden";
-            return form.valid();
-        },
-        onFinishing: function (event, currentIndex)
-        {
-            form.validate().settings.ignore = ":disabled";
-            return form.valid();
-        },
-        onFinished: function (event, currentIndex)
-        {
-            document.getElementById("questionnaire").submit();
-        }
-    });
+    }
+});
+form.steps({
+    headerTag: "h1",
+    bodyTag: "section",
+    transitionEffect: "slideLeft",
+    onStepChanging: function (event, currentIndex, newIndex)
+    {
+        form.validate().settings.ignore = ":disabled,:hidden";
+        return form.valid();
+    },
+    onFinishing: function (event, currentIndex)
+    {
+        form.validate().settings.ignore = ":disabled";
+        return form.valid();
+    },
+    onFinished: function (event, currentIndex)
+    {
+        document.getElementById("questionnaire").submit();
+    }
+});
+</script>
+
+<script type="text/javascript">
+function enableFields(chk,field1,field2) {
+var cmp1 = document.getElementById(field1);
+var cmp2 = document.getElementById(field2);
+if(chk.checked) {
+    cmp1.disabled = false;
+    cmp2.disabled = false;
+}
+else {
+    cmp1.disabled = true;
+    cmp2.disabled = true;
+}
+
+}
+</script>
+
+<script type="text/javascript">
+document.getElementById("dateField").value = new Date().toISOString().substring(0, 10);
 </script>
 
 </html>
