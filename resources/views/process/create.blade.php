@@ -37,14 +37,14 @@ use App\Modality;
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Data Inicial:</strong>
-                {!! Form::date('start_date', '', array('placeholder' => 'dd/mm/aaaa','class' => 'form-control')) !!}
+                {!! Form::text('start_date', '', array('placeholder' => 'dd/mm/aaaa', 'maxlength' => '10', 'onkeypress' => 'mascaraData( this, event )', 'class' => 'form-control')) !!}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Data Final:</strong>
-                {!! Form::date('final_date', '', array('placeholder' => 'dd/mm/aaa','class' => 'form-control')) !!}
+                {!! Form::text('final_date', '', array('placeholder' => 'dd/mm/aaa', 'maxlength' => '10', 'onkeypress' => 'mascaraData( this, event )', 'class' => 'form-control')) !!}
             </div>
         </div>
 

@@ -100,7 +100,7 @@ class FilesController extends Controller {
                 $file = File::create(['filename' => $fileName]);
                 $file->process_id = $process_id;
                 $file->save();
-                return redirect()->to('/processes/'.$process_id);
+                return redirect()->to('/admin/processes/'.$process_id);
             }
         // }
 
@@ -121,6 +121,6 @@ class FilesController extends Controller {
         Storage::delete(config('app.fileDestinationPath').'/'.$file->filename);
         $file->delete();
         $process_id = $file->process->id;
-        return redirect()->to('/processes/'.$process_id);
+        return redirect()->to('/admin/processes/'.$process_id);
     }
 }

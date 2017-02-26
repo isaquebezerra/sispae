@@ -21,6 +21,15 @@
     <script src="/js/jquery.js"></script>
     <script src="/js/jquery.steps.js"></script>
     <script src="/js/jquery.validate.js"></script>
+    <script src="/js/jquery.maskedinput.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#cep").mask("99.999-999");
+    });
+    $(document).ready(function(){
+        $("#cep-pais").mask("99.999-999");
+    });
+    </script>
 
     <!-- Scripts -->
     
@@ -30,6 +39,52 @@
         ]); ?>
     </script>
 
+    <script language="JavaScript" type="text/javascript">
+        function mascaraData( campo, e ) {  
+            var kC = (document.all) ? event.keyCode : e.keyCode;
+            var data = campo.value;
+            if( kC!=8 && kC!=46 ) {
+                if( data.length==2 ) {
+                    campo.value = data += '/';
+                }
+                else if( data.length==5 ) {
+                    campo.value = data += '/';
+                }
+                else
+                    campo.value = data;
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function mascara(o,f){
+            v_obj=o
+            v_fun=f
+            setTimeout("execmascara()",1)
+        }
+        function execmascara(){
+            v_obj.value=v_fun(v_obj.value)
+        }
+        function mtel(v){
+            v=v.replace(/\D/g,"");
+            v=v.replace(/^(\d{2})(\d)/g,"($1) $2");
+            v=v.replace(/(\d)(\d{4})$/,"$1-$2");
+            return v;
+        }
+
+        function getByclass( el ){
+            return document.getElementsByClassName( el );
+        }
+        window.onload = function(){
+            var elems = document.getElementsByClassName( 'mascara-telefone' )
+
+            for (var i = 0; i < elems.length; i++ ) {
+                elems[i].onkeypress = function(){
+                    mascara( this, mtel );
+                }
+            }
+        }
+    </script>
 
     <style type="text/css">
 
@@ -134,7 +189,7 @@
                     <div class="form-group row">
                         <div class="col-sm-6">
                             {!! Form::label('nome', 'Nome:') !!}
-                            {!! Form::text('nome', Auth::user()->name, array('placeholder' => 'Nome', 'class' => 'form-control')) !!}
+                            {!! Form::text('nome', Auth::user()->name, array('placeholder' => 'Nome', 'class' => 'form-control required')) !!}
                         </div>
                         <div class="col-sm-6">
                             {!! Form::label('apelido', 'Apelido:') !!}
@@ -145,55 +200,55 @@
                     <div class="form-group row">
                         <div class="col-sm-12">
                             {!! Form::label('endereco', 'Endereço:') !!}
-                            {!! Form::textarea('endereco', null, array('placeholder' => 'Nome da rua, numero, Bairro', 'rows' => 2, 'class' => 'form-control')) !!}
+                            {!! Form::textarea('endereco', null, array('placeholder' => 'Nome da rua, numero, Bairro', 'rows' => 2, 'class' => 'form-control required')) !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-4">
                             {!! Form::label('cidade', 'Cidade:') !!}
-                            {!! Form::text('cidade', null, array('placeholder' => 'Cidade', 'class' => 'form-control')) !!}
+                            {!! Form::text('cidade', null, array('placeholder' => 'Cidade', 'class' => 'form-control required')) !!}
                         </div>
                         <div class="col-sm-4">
                             {!! Form::label('estado', 'Estado:') !!}
-                            {!! Form::text('estado', null, array('placeholder' => 'Estado', 'class' => 'form-control')) !!}
+                            {!! Form::text('estado', null, array('placeholder' => 'Estado', 'class' => 'form-control required')) !!}
                         </div>
                         <div class="col-sm-4">
                             {!! Form::label('cep', 'CEP:') !!}
-                            {!! Form::text('cep', null, array('placeholder' => 'CEP', 'class' => 'form-control')) !!}
+                            {!! Form::text('cep', null, array('placeholder' => 'CEP', 'class' => 'form-control required', 'id' => 'cep')) !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-6">
                             {!! Form::label('ponto_ref', 'Ponto de referência:') !!}
-                            {!! Form::text('ponto_ref', null, array('placeholder' => 'Ponto de Referencia', 'class' => 'form-control')) !!}
+                            {!! Form::text('ponto_ref', null, array('placeholder' => 'Ponto de Referencia', 'class' => 'form-control required')) !!}
                         </div>
                         <div class="col-sm-6">
                             {!! Form::label('telefone', 'Telefone:') !!}
-                            {!! Form::text('telefone', null, array('placeholder' => 'Telefone', 'class' => 'form-control')) !!}
+                            {!! Form::text('telefone', null, array('placeholder' => 'Telefone', 'class' => 'form-control required mascara-telefone')) !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-6">
                             {!! Form::label('data_nascimento', 'Data de nascimento:') !!}
-                            {!! Form::text('data_nascimento', null, array('class' => 'form-control')) !!}
+                            {!! Form::text('data_nascimento', null, array('id' => 'data_nascimento', 'maxlength' => '10', 'onkeypress' => 'mascaraData( this, event )', 'class' => 'form-control required')) !!}
                         </div>
                         <div class="col-sm-6">
                             {!! Form::label('sexo', 'Sexo:') !!}
-                            {!! Form::select('sexo', ['Feminino' => 'Feminino', 'Masculino' => 'Masculino'], null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            {!! Form::select('sexo', ['Feminino' => 'Feminino', 'Masculino' => 'Masculino'], null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-6">
                             {!! Form::label('nome_mae', 'Nome da mãe:') !!}
-                            {!! Form::text('nome_mae', null, array('placeholder' => 'Nome da mãe', 'class' => 'form-control')) !!}
+                            {!! Form::text('nome_mae', null, array('placeholder' => 'Nome da mãe', 'class' => 'form-control required')) !!}
                         </div>
                         <div class="col-sm-6">
                             {!! Form::label('nome_pai', 'Nome do pai:') !!}
-                            {!! Form::text('nome_pai', null, array('placeholder' => 'Nome do pai', 'class' => 'form-control')) !!}
+                            {!! Form::text('nome_pai', null, array('placeholder' => 'Nome do pai', 'class' => 'form-control required')) !!}
                         </div>
                     </div>
 
@@ -202,45 +257,45 @@
                             {!! Form::label('cond_resid', 'Qual a sua atual condição de residência:') !!}
                             {!! Form::select('cond_resid',
                             [
-                                'A' => 'Família reside em área rural, indígena aldeado, negro de comunidade quilombola, pais falecidos, pais negligentes',
-                                'B' => 'Reside separado da família (jovem e adolescente, responsável pelo próprio sustento)',
-                                'C' => 'Adulto(a) reside com companheiro(a), responsável pelo próprio sustento',
-                                'D' => 'Estudante dividindo a moradia com outros tendo a finalidade de estudar, sustentado pelos pais. Oriundo de cidades distintas do Campus'
+                                'Família reside em área rural, indígena aldeado, negro de comunidade quilombola, pais falecidos, pais negligentes' => 'Família reside em área rural, indígena aldeado, negro de comunidade quilombola, pais falecidos, pais negligentes',
+                                'Reside separado da família (jovem e adolescente, responsável pelo próprio sustento)' => 'Reside separado da família (jovem e adolescente, responsável pelo próprio sustento)',
+                                'Adulto(a) reside com companheiro(a), responsável pelo próprio sustento' => 'Adulto(a) reside com companheiro(a), responsável pelo próprio sustento',
+                                'Estudante dividindo a moradia com outros tendo a finalidade de estudar, sustentado pelos pais. Oriundo de cidades distintas do Campus' => 'Estudante dividindo a moradia com outros tendo a finalidade de estudar, sustentado pelos pais. Oriundo de cidades distintas do Campus'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-12">
                             {!! Form::label('endereco_pais', 'Caso não more com seus pais ou responsáveis, qual é o endereço deles?') !!}
-                            {!! Form::textarea('endereco_pais', null, array('placeholder' => 'Nome da rua, numero, Bairro', 'rows' => 2, 'class' => 'form-control')) !!}
+                            {!! Form::textarea('endereco_pais', null, array('placeholder' => 'Nome da rua, numero, Bairro', 'rows' => 2, 'class' => 'form-control required')) !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-4">
                             {!! Form::label('cidade_pais', 'Cidade:') !!}
-                            {!! Form::text('cidade_pais', null, array('placeholder' => 'Cidade', 'class' => 'form-control')) !!}
+                            {!! Form::text('cidade_pais', null, array('placeholder' => 'Cidade', 'class' => 'form-control required')) !!}
                         </div>
                         <div class="col-sm-4">
                             {!! Form::label('estado_pais', 'Estado:') !!}
-                            {!! Form::text('estado_pais', null, array('placeholder' => 'Estado', 'class' => 'form-control')) !!}
+                            {!! Form::text('estado_pais', null, array('placeholder' => 'Estado', 'class' => 'form-control required')) !!}
                         </div>
                         <div class="col-sm-4">
                             {!! Form::label('cep_pais', 'CEP:') !!}
-                            {!! Form::text('cep_pais', null, array('placeholder' => 'CEP', 'class' => 'form-control')) !!}
+                            {!! Form::text('cep_pais', null, array('placeholder' => 'CEP', 'class' => 'form-control required', 'id' => 'cep-pais')) !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-6">
                             {!! Form::label('ponto_ref_pais', 'Ponto de referência:') !!}
-                            {!! Form::text('ponto_ref_pais', null, array('placeholder' => 'Ponto de referência', 'class' => 'form-control')) !!}
+                            {!! Form::text('ponto_ref_pais', null, array('placeholder' => 'Ponto de referência', 'class' => 'form-control required')) !!}
                         </div>
                         <div class="col-sm-6">
                             {!! Form::label('telefone_pais', 'Telefone dos pais:') !!}
-                            {!! Form::text('telefone_pais', null, array('placeholder' => 'Telefone', 'class' => 'form-control')) !!}
+                            {!! Form::text('telefone_pais', null, array('placeholder' => 'Telefone', 'class' => 'form-control required mascara-telefone')) !!}
                         </div>
                     </div>
 
@@ -256,7 +311,7 @@
                                 'Vive em união estável' => 'Vive em união estável',
                                 'Viúvo(a)' => 'Viúvo(a)'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                         <div class="col-sm-6">
                             {!! Form::label('raca', 'Você se considera:') !!}
@@ -271,7 +326,7 @@
                                 'Não quer declarar' => 'Não quer declarar',
                                 'Outros' => 'Outros'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                     </div>
 
@@ -288,7 +343,7 @@
                                 'Não quer responder' => 'Não quer responder',
                                 'Outros' => 'Outros'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                         <div class="col-sm-6">
                             {!! Form::label('mora_com', 'Com quem você mora?') !!}
@@ -305,7 +360,7 @@
                                 'Com amigos(as)' => 'Com amigos(as)',
                                 'Outros' => 'Outros'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                     </div>
 
@@ -402,7 +457,7 @@
                                 'Parte em escola pública e parte em escola particular com bolsa' => 'Parte em escola pública e parte em escola particular com bolsa',
                                 'Parte em escola pública e parte em escola particular sem bolsa' => 'Parte em escola pública e parte em escola particular sem bolsa'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                     </div>
 
@@ -417,14 +472,14 @@
                                 'Parte em escola pública e parte em escola particular com bolsa' => 'Parte em escola pública e parte em escola particular com bolsa',
                                 'Parte em escola pública e parte em escola particular sem bolsa' => 'Parte em escola pública e parte em escola particular sem bolsa'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-12">
                             {!! Form::label('motivo_curso', 'Qual seu curso no IF Sertão e por que o escolheu?') !!}
-                            {!! Form::textarea('motivo_curso', null, array('rows' => 2, 'class' => 'form-control')) !!}
+                            {!! Form::textarea('motivo_curso', null, array('rows' => 2, 'class' => 'form-control required')) !!}
                         </div>
                     </div>
 
@@ -445,7 +500,7 @@
                                 'Subsequente'   => 'Subsequente',
                                 'Superior'      => 'Superior'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                         <div class="col-sm-3">
                             {!! Form::label('turno', 'Turno:') !!}
@@ -455,18 +510,18 @@
                                 'Tarde' => 'Tarde',
                                 'Noite' => 'Noite'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-6">
                             {!! Form::label('inicio_curso', 'Data de início do curso:') !!}
-                            {!! Form::date('inicio_curso', null, array('placeholder'=>'dd/mm/yyyy', 'class' => 'form-control')) !!}
+                            {!! Form::text('inicio_curso', null, array('id' => 'inicio_curso', 'maxlength' => '10', 'onkeypress' => 'mascaraData( this, event )', 'class' => 'form-control required')) !!}
                         </div>
                         <div class="col-sm-6">
                             {!! Form::label('termino_curso', 'Data de término do curso:') !!}
-                            {!! Form::date('termino_curso', null, array('placeholder'=>'dd/mm/yyyy', 'class' => 'form-control')) !!}
+                            {!! Form::text('termino_curso', null, array('id' => 'termino_curso', 'maxlength' => '10', 'onkeypress' => 'mascaraData( this, event )', 'class' => 'form-control required')) !!}
                         </div>
                     </div>
 
@@ -491,6 +546,7 @@
                         <div class="col-sm-12">
                             {!! Form::label('fez_curso_lingua', 'Você fez ou faz curso de línguas?') !!}
                             <div class="checkbox">
+                                <label class="checkbox-inline"><input type="checkbox" name="fez_curso_lingua[]" value="Não">Não</label>
                                 <label class="checkbox-inline"><input type="checkbox" name="fez_curso_lingua[]" value="Inglês">Inglês</label>
                                 <label class="checkbox-inline"><input type="checkbox" name="fez_curso_lingua[]" value="Espanhol">Espanhol</label>
                                 <label class="checkbox-inline"><input type="checkbox" name="fez_curso_lingua[]" value="Francês">Francês</label>
@@ -575,7 +631,7 @@
                     <div class="form-group row">
                         <div class="col-sm-6">
                             {!! Form::label('em_que_estagia', 'Em que você faz estágio?') !!}
-                            {!! Form::text('em_que_estagia', Auth::user()->name, array('class' => 'form-control')) !!}
+                            {!! Form::text('em_que_estagia', null, array('class' => 'form-control')) !!}
                         </div>
                         <div class="col-sm-6">
                             {!! Form::label('valor_estagio', 'Valor do salário') !!}
@@ -587,12 +643,12 @@
                         <div class="col-sm-9">
                             {!! Form::label('dific_estudos', 'Você tem dificuldade para os estudos?') !!}
                             <div class="checkbox">
-                                <label><input type="checkbox" name="dific_estudos" value="Não tenho nenhuma dificuldade">Não tenho nenhuma dificuldade</label>
-                                <label><input type="checkbox" name="dific_estudos" value="Nas matérias de ciências da natureza (matemática, física, química, biologia)">Nas matérias de ciências da natureza (matemática, física, química, biologia)</label>
-                                <label><input type="checkbox" name="dific_estudos" value="Redação">Redação</label>
-                                <label><input type="checkbox" name="dific_estudos" value="Nas matérias de ciências humanas (história, geografia, sociologia, filosofia, Artes)">Nas matérias de ciências humanas (história, geografia, sociologia, filosofia, Artes)</label>
-                                <label><input type="checkbox" name="dific_estudos" value="Nas matérias de linguagem (Português, inglês, espanhol, libras)">Nas matérias de linguagem (Português, inglês, espanhol, libras)</label>
-                                <label><input type="checkbox" name="dific_estudos" value="Nas matérias das áreas específicas/técnicas do curso">Nas matérias das áreas específicas/técnicas do curso</label>
+                                <label><input type="checkbox" name="dific_estudos[]" value="Não tenho nenhuma dificuldade">Não tenho nenhuma dificuldade</label>
+                                <label><input type="checkbox" name="dific_estudos[]" value="Nas matérias de ciências da natureza (matemática, física, química, biologia)">Nas matérias de ciências da natureza (matemática, física, química, biologia)</label>
+                                <label><input type="checkbox" name="dific_estudos[]" value="Redação">Redação</label>
+                                <label><input type="checkbox" name="dific_estudos[]" value="Nas matérias de ciências humanas (história, geografia, sociologia, filosofia, Artes)">Nas matérias de ciências humanas (história, geografia, sociologia, filosofia, Artes)</label>
+                                <label><input type="checkbox" name="dific_estudos[]" value="Nas matérias de linguagem (Português, inglês, espanhol, libras)">Nas matérias de linguagem (Português, inglês, espanhol, libras)</label>
+                                <label><input type="checkbox" name="dific_estudos[]" value="Nas matérias das áreas específicas/técnicas do curso">Nas matérias das áreas específicas/técnicas do curso</label>
                             </div>
                         </div>
                     </div>
@@ -623,6 +679,9 @@
                     <div class="form-group row">
                         <div class="col-sm-3">
                             {!! Form::label('saude', 'Possui algum problema de saúde?') !!}
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="saude[]" value="Não">Não</label>
+                            </div>
                             <div class="checkbox">
                                 <label><input type="checkbox" name="saude[]" value="Depressão">Depressão</label>
                             </div>
@@ -809,7 +868,7 @@
                                 'Financiada'                        => 'Financiada',
                                 'Programa Minha Casa Minha Vida'    => 'Programa Minha Casa Minha Vida'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                     </div>
 
@@ -821,7 +880,7 @@
                                 'Alvenaria/Tijolo'  => 'Alvenaria/Tijolo',
                                 'Taipa/Pau a pique' => 'Taipa/Pau a pique',
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                         <div class="col-sm-4">
                             {!! Form::label('abastecimento_agua', 'Abastecimento de água:') !!}
@@ -832,7 +891,7 @@
                                 'Carro pipa'    => 'Carro pipa',
                                 'Outro'         => 'Outro'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                         <div class="col-sm-4">
                             {!! Form::label('infra_rua', 'Infraestrutura da rua:') !!}
@@ -841,7 +900,7 @@
                                 'Pavimentada' => 'Pavimentada',
                                 'Não pavimentada' => 'Não pavimentada',
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                     </div>
 
@@ -853,7 +912,7 @@
                                 'Regular' => 'Regular',
                                 'Não regular' => 'Não regular',
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                         <div class="col-sm-6">
                             {!! Form::label('acesso_saude', 'Acesso a serviço de saúde:') !!}
@@ -864,7 +923,7 @@
                                 'Hospital privado'  => 'Hospital privado',
                                 'CAPS'              => 'CAPS'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                     </div>
 
@@ -913,7 +972,7 @@
                                 'Vivem em união estável' => 'Vivem em união estável',
                                 'Viúvos(as)' => 'Viúvos(as)'
                             ],
-                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+                            null, ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
                         </div>
                     </div>
                 </section>
@@ -932,50 +991,50 @@
                             <div class="col-sm-12">
                                 <div class="col-sm-3 form-group">
                                     <label>Nome:</label>
-                                    <input type="text" name="nome_membro[]" placeholder="Primeiro nome" class="form-control">
+                                    <input type="text" name="nome_membro[]" placeholder="Primeiro nome" class="form-control required">
                                 </div>
                                 <div class="col-sm-3 form-group">
                                     <label>Idade:</label>
-                                    <input type="text" name="idade_membro[]" placeholder="Idade" class="form-control">
+                                    <input type="text" name="idade_membro[]" placeholder="Idade" class="form-control required">
                                 </div>
                                 <div class="col-sm-3 form-group">
                                     <label>Parentesco:</label>
-                                    <input type="text" name="parentesco_membro[]" placeholder="Parentesco" class="form-control">
+                                    <input type="text" name="parentesco_membro[]" placeholder="Parentesco" class="form-control required">
                                 </div>
                                 <div class="col-sm-3 form-group">
                                     <label>Profissão:</label>
-                                    <input type="text" name="profissao_membro[]" placeholder="Profissão" class="form-control">
+                                    <input type="text" name="profissao_membro[]" placeholder="Profissão" class="form-control required">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="col-sm-4 form-group">
                                     <label>Estado civil:</label>
-                                    <select name="estado_civil_membro[]" class="form-control" id="sel1">
-                                        <option value="" disabled selected>Selecione...</option>
-                                        <option>Solteiro</option>
-                                        <option>Casado</option>
-                                        <option>União estável</option>
-                                        <option>Separado</option>
-                                        <option>Viúvo</option>
+                                    <select name="estado_civil_membro[]" class="form-control required" id="sel1">
+                                        <option value="Não informado">Selecione...</option>
+                                        <option value="Solteiro">Solteiro</option>
+                                        <option value="Casado">Casado</option>
+                                        <option value="União estável">União estável</option>
+                                        <option value="Separado">Separado</option>
+                                        <option value="Viúvo">Viúvo</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-4 form-group">
                                     <label>Escolaridade:</label>
-                                    <select name="escolaridade_membro" class="form-control" id="sel1">
-                                        <option value="" disabled selected>Selecione...</option>
-                                        <option>Não escolarizado</option>
-                                        <option>Fundamental incompleto</option>
-                                        <option>Fundamental completo</option>
-                                        <option>Médio incompleto</option>
-                                        <option>Médio completo</option>
-                                        <option>Superior completo</option>
-                                        <option>Superior incompleto</option>
-                                        <option>Pós-Graduação</option>
+                                    <select name="escolaridade_membro[]" class="form-control required" id="sel1">
+                                        <option value="Não informado">Selecione...</option>
+                                        <option value="Não escolarizado">Não escolarizado</option>
+                                        <option value="Fundamental incompleto">Fundamental incompleto</option>
+                                        <option value="Fundamental completo">Fundamental completo</option>
+                                        <option value="Médio incompleto">Médio incompleto</option>
+                                        <option value="Médio completo">Médio completo</option>
+                                        <option value="Superior completo">Superior completo</option>
+                                        <option value="Superior incompleto">Superior incompleto</option>
+                                        <option value="Pós-Graduação">Pós-Graduação</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-4 form-group">
                                     <label>Renda mensal:</label>
-                                    <input name="renda_mensal_membro" type="text" placeholder="Profissão" class="form-control">
+                                    <input name="renda_mensal_membro[]" type="number" placeholder="Profissão" class="form-control required">
                                 </div>
                             </div>
                         </div>
@@ -1001,7 +1060,7 @@
                                 </div>
                                 <div class="col-sm-4 form-group">
                                     <label>Valor de mercado (R$):</label>
-                                    <input type="text" name="valor_bem[]" placeholder="Valor" class="form-control">
+                                    <input type="number" name="valor_bem[]" placeholder="Valor" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -1079,15 +1138,15 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             {!! Form::label('dist_casa_campus', 'Qual a distância, em quilômetros, de sua residência até o Campus?') !!}
-                            {!! Form::text('dist_casa_campus', null, array('placeholder' => '', 'class' => 'form-control')) !!}
+                            {!! Form::text('dist_casa_campus', null, array('placeholder' => '', 'class' => 'form-control required')) !!}
                         </div>
                         <div class="col-sm-4">
                             {!! Form::label('gasto_mens', 'Qual o gasto mensal, para chegar de sua residência até o Campus?') !!}
-                            {!! Form::text('gasto_mens', null, array('placeholder' => '', 'class' => 'form-control')) !!}
+                            {!! Form::text('gasto_mens', null, array('placeholder' => '', 'class' => 'form-control required')) !!}
                         </div>
                         <div class="col-sm-4">
                             {!! Form::label('tempo_percurso', 'Quanto tempo você leva para fazer este percurso?') !!}
-                            {!! Form::text('tempo_percurso', null, array('placeholder' => '', 'class' => 'form-control')) !!}
+                            {!! Form::text('tempo_percurso', null, array('placeholder' => '', 'class' => 'form-control required')) !!}
                         </div>
                     </div>
 
@@ -1096,7 +1155,15 @@
                             {!! Form::label('info_add', 'Caso você queira falar algo que não foi perguntado no questionário escreva aqui/informações complementares/relate aspectos relevantes sobre sua atual situação socioeconômica que justifique sua inclusão nos programas da Política de Assistência Estudantil do IF Sertão-PE.') !!}
                             {!! Form::textarea('info_add', null, array('placeholder' => '', 'rows' => 4, 'class' => 'form-control')) !!}
                         </div>
-                    </div>                   
+                    </div>
+
+                    <!-- <div class="form-group row">
+                        <div class="col-sm-12">
+                            <div class="checkbox">
+                                <label class="checkbox"><input type="checkbox" name="aceite" value="Aceito">Declaro que estou ciente do conteúdo do questionário para avaliação socioeconômica ao qual estou me inscrevendo e que todas as informações aqui prestadas são verdadeiras. “A declaração falsa é crime previsto no artigo 299 do Código Penal Brasileiro, sujeitando o declarante às suas penas, sem prejuízo de outras sanções cabíveis”.</label>
+                            </div>
+                        </div>
+                    </div> -->                  
                 </section>
 
             {!! Form::close() !!}
@@ -1172,12 +1239,12 @@ form.steps({
     onStepChanging: function (event, currentIndex, newIndex)
     {
         form.validate().settings.ignore = ":disabled,:hidden";
-        return form.valid();
+        return true;
     },
     onFinishing: function (event, currentIndex)
     {
         form.validate().settings.ignore = ":disabled";
-        return form.valid();
+        return true;
     },
     onFinished: function (event, currentIndex)
     {
@@ -1201,10 +1268,5 @@ else {
 
 }
 </script>
-
-<script type="text/javascript">
-document.getElementById("dateField").value = new Date().toISOString().substring(0, 10);
-</script>
-
 </html>
 

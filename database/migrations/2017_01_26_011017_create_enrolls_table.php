@@ -15,13 +15,15 @@ class CreateEnrollsTable extends Migration
     {
         Schema::create('enrolls', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('process_name')->nullable();
-            $table->text('modality')->nullable();
+            $table->enum('status', ['Aguardando Avaliação', 'Deferida', 'Indeferida'])->nullable();
             $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');;
             $table->timestamps();
         });
     }
+
+            
 
     /**
      * Reverse the migrations.
