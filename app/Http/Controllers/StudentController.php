@@ -9,17 +9,77 @@ use App\FamilyMember;
 use DateTime;
 use App\Process;
 use App\Property;
+use App\Enroll;
+use App\Campus;
+use Hash;
+use App\User;
 
-class QuestionnaireController extends Controller {
+class StudentController extends Controller {
 
 	public function enroll($id) {
 		$process = Process::find($id);
 		return view('student.enroll',['process' => $process]);
 	}
 
+	public function enrolls() {
+
+		$user = Auth::user();
+		$enrolls = $user->enrolls;
+		return view('student.enrolls', compact('enrolls'));
+	}
+
 	public function questionnaire($id) {
 		$process = Process::find($id);
 		return view('student.questionnaire',['process' => $process]);
+	}
+
+	public function edit() {
+
+		$campuses = Campus::pluck('name','id');
+		$user = Auth::user();
+		$userCampus = $user->campus->id;
+		$course = $user->personaldata->course;
+		$register = $user->personaldata->register;
+		$class = $user->personaldata->class;
+		return view('student.edit', compact('campuses', 'userCampus', 'user', 'course', 'register', 'class'));
+	}
+
+	public function update(Request $request, $id) {
+
+    	$this->validate($request, [
+    		'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'campus_id' => 'required',
+            'course' => 'required',
+            'register' => 'required',
+            'class' => 'required',
+            'password' => 'same:confirm-password'
+        ]);
+
+        $input = $request->all();
+
+        if(!empty($input['password'])) {
+        	$input['password'] = Hash::make($input['password']);
+        }else{
+            $input = array_except($input,array('password'));    
+        }
+
+        $user = User::find($id);
+        $user->update($input);
+
+        $user->personaldata->course = $input['course'];
+        $user->personaldata->register = $input['register'];
+        $user->personaldata->class = $input['class'];
+        $user->personaldata->save(); 
+
+        return redirect()
+        	->route('student.personaldata')
+            ->with('success','Usuário alterado com sucesso!');
+    }
+
+	public function personaldata() {
+		$user = Auth::user();
+		return view('student.personaldata', compact('user'));
 	}
 
 	public function questionnairesend(Request $request) {
@@ -199,11 +259,19 @@ class QuestionnaireController extends Controller {
 			}
 		}
 
+		$modalities = $input['modalities'];
+		$process_id = $input['process'];
 
-		
+		foreach ($modalities as $modality) {
+			$enroll[] = Enroll::create(
+			[
+				'status' => 'Aguardando Avaliação',
+				'user_id' => $id_user,
+				'process_id' => $process_id,
+				'modality_id' => $modality
+			]);
+	}		
 
-        return $questionnaire->id;
+    return $enroll;
 	}
 }
-
-

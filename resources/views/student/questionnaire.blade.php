@@ -1152,10 +1152,23 @@
 
                     <div class="form-group row">
                         <div class="col-sm-12">
+                            {!! Form::label('modalities', 'Escolha as modalidades nas quais deseja se inscrever:') !!}
+                            <div class="radio">
+                                @foreach($process->modalities as $modality)
+                                    <label class="checkbox-inline"><input type="checkbox" name="modalities[]" value="{{ $modality->id }}">{{ $modality->name }}</label>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
                             {!! Form::label('info_add', 'Caso você queira falar algo que não foi perguntado no questionário escreva aqui/informações complementares/relate aspectos relevantes sobre sua atual situação socioeconômica que justifique sua inclusão nos programas da Política de Assistência Estudantil do IF Sertão-PE.') !!}
                             {!! Form::textarea('info_add', null, array('placeholder' => '', 'rows' => 4, 'class' => 'form-control')) !!}
                         </div>
                     </div>
+
+                    <input type="hidden" name="process" value="{{ $process->id }}">
 
                     <!-- <div class="form-group row">
                         <div class="col-sm-12">

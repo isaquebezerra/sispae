@@ -51,24 +51,21 @@
             <div class="form-group">
                 <strong>Arquivos:</strong>
                 <ul>
+
                     @foreach($files as $file)
-                        <li>{{ $file->filename }}{{ link_to_route('deleteFile', 'Delete', [$file->id]) }}</li>
+                        <li>{{ $file->filename }}{{ link_to_route('deleteFile', "  Remover", [$file->id]) }}</li>
                     @endforeach
                 </ul>
                 <strong>Adicionar Arquivos:</strong>
                 {!! Form::open(array('url' => '/handleUpload', 'files' => true)) !!}
                     {!! Form::file('file') !!}
                     {!! Form::hidden('process_id', $process->id) !!}
-                    {!! Form::token() !!}
+                    {!! Form::token() !!}<br>
                     {!! Form::submit('Upload') !!}
                 {!! Form::close() !!}
                 
             </div>
         </div>
-
-        
-        
-        	
 	</div>
 </div>
 @endsection

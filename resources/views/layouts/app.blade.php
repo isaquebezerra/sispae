@@ -38,7 +38,7 @@
     </script>
 </head>
 <body>
-    <div id="app">
+    <div class="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -103,7 +103,7 @@
         </nav>
 
         @yield('content')
-        <footer class="container-fluid text-center">
+        <footer class="footer container-fluid text-center">
             <p>SISPAE - Sistema de Apoio ao Programa de Assistência Estudantil.</p>
         </footer>
     </div>

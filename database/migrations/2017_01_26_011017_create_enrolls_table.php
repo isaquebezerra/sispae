@@ -14,13 +14,16 @@ class CreateEnrollsTable extends Migration
     public function up()
     {
         Schema::create('enrolls', function (Blueprint $table) {
+
             $table->increments('id');
             $table->enum('status', ['Aguardando Avaliação', 'Deferida', 'Indeferida'])->nullable();
             $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onUpdate('cascade')->onDelete('cascade');;
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
+        
     }
 
             

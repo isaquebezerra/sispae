@@ -44,20 +44,24 @@ Route::group(['middleware' => ['web']], function() {
 		});
 	});
 
-	Route::get('upload', 'FilesController@upload');
-    Route::post('/handleUpload', 'FilesController@handleUpload');
-    Route::get('/deleteFile/{id}', ['as' => 'deleteFile', 'uses' => 'FilesController@deleteFile']);
+	Route::group(['prefix'=>'/student', 'middleware'=>'auth'], function() {
+		Route::get('enroll/{id}', ['as' => 'student.enroll', 'uses' => 'StudentController@enroll']);
+		Route::get('enroll/{id}/questionnaire', ['as' => 'student.questionnaire', 'uses' => 'StudentController@questionnaire']);
+		Route::post('questionnairesend', ['as' => 'student.questionnairesend', 'uses' => 'StudentController@questionnairesend']);
+		Route::get('personaldata', ['as' => 'student.personaldata', 'uses' => 'StudentController@personaldata']);
+		Route::get('edit', ['as' => 'student.edit', 'uses' => 'StudentController@edit']);
+		Route::patch('{id}', ['as' => 'student.update', 'uses' => 'StudentController@update']);
+		Route::get('enrolls', ['as' => 'student.enrolls', 'uses' => 'StudentController@enrolls']);
+	});
 });
+
+Route::get('upload', 'FilesController@upload');
+Route::post('/handleUpload', 'FilesController@handleUpload');
+Route::get('/deleteFile/{id}', ['as' => 'deleteFile', 'uses' => 'FilesController@deleteFile']);
 
 
 
 Route::group(['prefix'=>'/'], function() {
 	Route::get('', 'MainController@mainindex');
 	Route::get('{link_name}', ['as'=>'student.index', 'uses' => 'MainController@index']);
-});
-
-Route::group(['prefix'=>'/student'], function() {
-	Route::get('enroll/{id}', ['as' => 'student.enroll', 'uses' => 'QuestionnaireController@enroll']);
-	Route::get('enroll/{id}/questionnaire', ['as' => 'student.questionnaire', 'uses' => 'QuestionnaireController@questionnaire']);
-	Route::post('questionnairesend', ['as' => 'student.questionnairesend', 'uses' => 'QuestionnaireController@questionnairesend']);
 });

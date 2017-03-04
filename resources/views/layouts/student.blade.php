@@ -23,15 +23,15 @@
     <script>
         $(document).ready(function(){
             $("#newMember").click(function(){      
-                var seuNode = document.getElementById('member');
-                var clone   = seuNode.cloneNode(true);
+                var member = document.getElementById('member');
+                var clone   = member.cloneNode(true);
                 document.body.appendChild(clone);
             });
         });
     </script>
 </head>
 <body>
-    <div id="app">
+    <div class="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -54,8 +54,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         @if(Auth::check())
-                            <li><a href="{{ route('users.index') }}">Dados Pessoais</a></li>
-                            <li><a href="{{ route('roles.index') }}">Inscrições</a></li>
+                            <li><a href="{{ route('student.personaldata') }}">Dados Pessoais</a></li>
+                            <li><a href="{{ route('student.enrolls') }}">Inscrições</a></li>
                             <li><a href="{{ route('campuses.index') }}">Questionário</a></li>
                         @endif
                     </ul>
@@ -93,7 +93,7 @@
         </nav>
 
         @yield('content')
-        <footer class="container-fluid text-center">
+        <footer class="footer container-fluid text-center">
             <p>SISPAE - Sistema de Apoio ao Programa de Assistência Estudantil.</p>
         </footer>
     </div>

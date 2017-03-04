@@ -2,6 +2,11 @@
 
 @section('content')
 
+<?php
+use App\Campus;
+$campuses = Campus::pluck('name','id');
+?>
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -65,7 +70,7 @@
                             <label for="campus" class="col-md-4 control-label">Campus</label>
 
                             <div class="col-md-6">
-                                {!! Form::select('campus_id',$campuses, [], array('class' => 'form-control')) !!}
+                                {!! Form::select('campus_id',$campuses, [], array('placeholder' => 'Selecione...', 'class' => 'form-control')) !!}
                             </div>
                         </div>
 
